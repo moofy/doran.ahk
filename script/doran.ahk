@@ -1,8 +1,9 @@
 #Include, lib\TF.ahk
+#Include, app\helpers.ahk
 #IfWinActive, League of Legends (TM) Client
 
-; Messages
-gg = %A_WorkingDir%\messages\gg.txt
+; Files
+GoodGameFile = %A_WorkingDir%\messages\gg.txt
 
 ; Config
 IniRead, EnterDisabled, config.ini, General, DisableEnter
@@ -15,9 +16,7 @@ If (EnterDisabled)
 
 ; Say GG
 ::gg::
-	LineCount := TF_CountLines(gg)
-	Random, x, 1, LineCount
-	FileReadLine, Say, %gg%, x
+	Say := GetRandomLine(GoodGameFile)
 
 	If (AllChatEnabled)
 		Send, {Enter}/all %Say%{Enter}
