@@ -3,7 +3,7 @@
 #IfWinActive, League of Legends (TM) Client
 
 ; Files
-GoodGameFile = %A_WorkingDir%\messages\gg.txt
+GoodGameFile = %A_WorkingDir%\app\messages\gg.txt
 
 ; Config
 IniRead, EnterDisabled, config.ini, General, DisableEnter
@@ -14,11 +14,6 @@ If (EnterDisabled)
 	*Enter::Return
 	*NumpadEnter::Return
 
-; Say GG
-::gg::
-	Say := GetRandomLine(GoodGameFile)
-
-	If (AllChatEnabled)
-		Send, {Enter}/all %Say%{Enter}
-	Else
-		Send, {Enter}%Say%{Enter}
+#Include, app\hotkeys\global.ahk
+#Include, app\hotkeys\flash.ahk
+#Include, app\hotkeys\smite.ahk
